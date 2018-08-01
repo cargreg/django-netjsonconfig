@@ -192,8 +192,7 @@ class BaseRegisterView(UpdateLastIpMixin, CsrfExtemptMixin, View):
             config.device = device
         # update last_ip field of device
         device.last_ip = request.META.get('REMOTE_ADDR')
-
-        #update os,model and system fields of device
+        # update os,model and system fields of device
         os = request.POST.get('os')
         model = request.POST.get('model')
         system = request.POST.get('system')
@@ -202,7 +201,6 @@ class BaseRegisterView(UpdateLastIpMixin, CsrfExtemptMixin, View):
             device.model = model
             device.system = system
         # validate and save everything or fail otherwise
-
         try:
             device.full_clean()
             device.save()
